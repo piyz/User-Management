@@ -3,7 +3,7 @@ package by.matrosov.usermanagment.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "goups")
+@Table(name = "groups")
 public class Group {
 
     @Id
