@@ -13,3 +13,8 @@ CREATE TABLE users(
   district VARCHAR(255),
   street VARCHAR(255)
 );
+
+CREATE TABLE groups(
+  group_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  name VARCHAR(255) NOT NULL
+);
