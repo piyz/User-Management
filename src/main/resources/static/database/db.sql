@@ -28,3 +28,7 @@ CREATE TABLE user_group(
 );
 
 ## need to add user with role admin to db
+INSERT INTO groups VALUES (1, 'ADMIN');
+INSERT INTO users (first_name, last_name, username, password, email, birthday, active) VALUES
+  ('admin', 'admin', 'admin', 'admin', 'admin@mail.ru', str_to_date('07-25-2012','%m-%d-%Y'), 1);
+INSERT INTO user_group VALUES (1,1);

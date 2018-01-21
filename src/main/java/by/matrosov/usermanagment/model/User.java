@@ -43,7 +43,7 @@ public class User {
 
     @Column(name = "birthday")
     @NotEmpty(message = "*Please provide your birthday")
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    //@DateTimeFormat(pattern = "yyyy/MM/dd")
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
