@@ -65,8 +65,8 @@ public class User {
     @Column(name = "street")
     private String street;
 
-    @ManyToMany
-    //@JoinTable
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_group", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
     private Set<Group> groups;
 
     public int getId() {

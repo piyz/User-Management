@@ -18,3 +18,13 @@ CREATE TABLE groups(
   group_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   name VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE user_group(
+  user_id INT(11) NOT NULL ,
+  group_id INT(11) NOT NULL ,
+  UNIQUE (user_id, group_id),
+  FOREIGN KEY (user_id) REFERENCES users(user_id),
+  FOREIGN KEY (group_id) REFERENCES groups(group_id)
+);
+
+## need to add user with role admin to db
