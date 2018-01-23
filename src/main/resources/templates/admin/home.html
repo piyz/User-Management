@@ -11,6 +11,10 @@
             <button type="Submit" th:text="getAll">Get All</button>
         </form>
 
+        <form th:action="@{/admin/home/getuserbyid}">
+            <label for="id">Search For ID</label><input name="id" id="id" type="number">
+            <button type="submit">Go</button>
+        </form>
 
         <form th:action="@{/logout}" method="get">
             <button type="Submit" th:text="Logout">Logout</button>

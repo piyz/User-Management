@@ -16,7 +16,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    private int id;
+    private long id;
 
     @Column(name = "first_name")
     @NotEmpty(message = "*Please provide your name")
@@ -69,7 +69,7 @@ public class User {
     @JoinTable(name = "user_group", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
     private Set<Group> groups;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
