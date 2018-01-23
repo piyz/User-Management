@@ -2,6 +2,7 @@ package by.matrosov.usermanagment.service;
 
 import by.matrosov.usermanagment.model.User;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface UserService {
@@ -9,4 +10,5 @@ public interface UserService {
     User getById(long id);
     User getByFirstname(String s);
     User getByLastname(String s);
+    User getByBirthday(Date d);
 }

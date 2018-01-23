@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>User By Birthday</title>
+</head>
+<body>
+<div>
+    <h2>USER ID</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Birthday</th>
+        </tr>
+        <tr th:each="user : ${date}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.firstname}"></td>
+            <td th:text="${user.lastname}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.birthday}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -64,6 +65,15 @@ public class SimpleController {
         User user = userService.getByLastname(name);
         modelAndView.addObject("name2", user);
         modelAndView.setViewName("admin/lastname");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/home/getbybirthday", method = RequestMethod.GET)
+    public ModelAndView getUserByBirthday(@RequestParam("date") Date date){
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.getByBirthday(date);
+        modelAndView.addObject("date", user);
+        modelAndView.setViewName("admin/date");
         return modelAndView;
     }
 

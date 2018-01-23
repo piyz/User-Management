@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
@@ -43,8 +43,8 @@ public class User {
 
     @Column(name = "birthday")
     @NotEmpty(message = "*Please provide your birthday")
-    //@DateTimeFormat(pattern = "yyyy/MM/dd")
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
+    //@Temporal(TemporalType.DATE)
     private Date birthday;
 
     @Column(name = "active")

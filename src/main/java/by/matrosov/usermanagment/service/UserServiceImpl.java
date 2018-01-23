@@ -6,6 +6,7 @@ import by.matrosov.usermanagment.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -35,5 +36,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getByLastname(String s) {
         return userDao.getByLastname(s);
+    }
+
+    @Override
+    public User getByBirthday(Date d) {
+        return userDao.getByBirthday(d);
     }
 }
