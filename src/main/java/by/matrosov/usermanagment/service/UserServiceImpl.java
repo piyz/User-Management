@@ -42,4 +42,9 @@ public class UserServiceImpl implements UserService {
     public User getByBirthday(Date d) {
         return userDao.getByBirthday(d);
     }
+
+    @Override
+    public User getByEmail(String s) {
+        return userDao.getByEmail(s);
+    }
 }

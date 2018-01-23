@@ -30,6 +30,11 @@
             <button type="submit">Go</button>
         </form>
 
+        <form th:action="@{/admin/home/getbyemail}">
+            <label for="email">Search For Email</label><input name="email" id="email" type="email">
+            <button type="submit">Go</button>
+        </form>
+
         <form th:action="@{/logout}" method="get">
             <button type="Submit" th:text="Logout">Logout</button>
         </form>

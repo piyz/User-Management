@@ -77,5 +77,14 @@ public class SimpleController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/admin/home/getbyemail", method = RequestMethod.GET)
+    public ModelAndView getUserByBirthday(@RequestParam("email") String email){
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.getByEmail(email);
+        modelAndView.addObject("email", user);
+        modelAndView.setViewName("admin/email");
+        return modelAndView;
+    }
+
 
 }

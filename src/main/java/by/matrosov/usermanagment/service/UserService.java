@@ -11,4 +11,5 @@ public interface UserService {
     User getByFirstname(String s);
     User getByLastname(String s);
     User getByBirthday(Date d);
+    User getByEmail(String s);
 }
