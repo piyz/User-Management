@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Admin page</title>
+</head>
+<body>
+    <div class="container">
+
+        <form th:action="@{/admin/home/all}" method="get">
+            <label>Click here to get all users</label>
+            <button type="Submit" th:text="getAll">Get All</button>
+        </form>
+
+
+        <form th:action="@{/logout}" method="get">
+            <button type="Submit" th:text="Logout">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
