@@ -50,11 +50,20 @@ public class SimpleController {
     }
 
     @RequestMapping(value = "/admin/home/getuserbyfirstname", method = RequestMethod.GET)
-    public ModelAndView getUserByFirstname(@RequestParam("name") String name){
+    public ModelAndView getUserByFirstname(@RequestParam("name1") String name){
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.getByFirstname(name);
-        modelAndView.addObject("name", user);
+        modelAndView.addObject("name1", user);
         modelAndView.setViewName("admin/firstname");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/home/getuserbylastname", method = RequestMethod.GET)
+    public ModelAndView getUserByLastname(@RequestParam("name2") String name){
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.getByLastname(name);
+        modelAndView.addObject("name2", user);
+        modelAndView.setViewName("admin/lastname");
         return modelAndView;
     }
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Users For Firstname</title>
+    <title>Users For Lastname</title>
 </head>
 <body>
     <div>
@@ -13,7 +13,7 @@
                 <th>Last Name</th>
                 <th>Email</th>
             </tr>
-            <tr th:each="user : ${name1}">
+            <tr th:each="user : ${name2}">
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.firstname}"></td>
                 <td th:text="${user.lastname}"></td>

@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
     public User getByFirstname(String s) {
         return userDao.getByFirstname(s);
     }
+
+    @Override
+    public User getByLastname(String s) {
+        return userDao.getByLastname(s);
+    }
 }

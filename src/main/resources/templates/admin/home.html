@@ -17,7 +17,12 @@
         </form>
 
         <form th:action="@{/admin/home/getuserbyfirstname}">
-            <label for="name">Search For Firstname</label><input name="name" id="name" type="text">
+            <label for="name1">Search For Firstname</label><input name="name1" id="name1" type="text">
+            <button type="submit">Go</button>
+        </form>
+
+        <form th:action="@{/admin/home/getuserbylastname}">
+            <label for="name2">Search For Lastname</label><input name="name2" id="name2" type="text">
             <button type="submit">Go</button>
         </form>
 
