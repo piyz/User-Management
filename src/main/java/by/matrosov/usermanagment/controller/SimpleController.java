@@ -49,5 +49,14 @@ public class SimpleController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/admin/home/getuserbyfirstname", method = RequestMethod.GET)
+    public ModelAndView getUserByFirstname(@RequestParam("name") String name){
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.getByFirstname(name);
+        modelAndView.addObject("name", user);
+        modelAndView.setViewName("admin/firstname");
+        return modelAndView;
+    }
+
 
 }
