@@ -42,7 +42,7 @@ public class User {
     private String email;
 
     @Column(name = "birthday")
-    @NotEmpty(message = "*Please provide your birthday")
+    //@NotEmpty(message = "*Please provide your birthday")
     @DateTimeFormat(pattern = "MM-dd-yyyy")
     //@Temporal(TemporalType.DATE)
     private Date birthday;

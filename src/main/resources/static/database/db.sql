@@ -5,7 +5,7 @@ CREATE TABLE users(
   username VARCHAR(255) NOT NULL ,
   password VARCHAR(255) NOT NULL ,
   email VARCHAR(255) NOT NULL ,
-  birthday DATE NOT NULL ,
+  birthday DATE ,
   active INT(11) DEFAULT NULL ,
   zip VARCHAR(255) ,
   country VARCHAR(255) ,
