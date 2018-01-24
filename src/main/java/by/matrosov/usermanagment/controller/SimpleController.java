@@ -5,9 +5,7 @@ import by.matrosov.usermanagment.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -114,7 +112,7 @@ public class SimpleController {
     }
 
     @RequestMapping(value = "/admin/home/getbyemail", method = RequestMethod.GET)
-    public ModelAndView getUserByBirthday(@RequestParam("email") String email){
+    public ModelAndView getUserByEmail(@RequestParam("email") String email){
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.getByEmail(email);
         modelAndView.addObject("email", user);
@@ -122,5 +120,35 @@ public class SimpleController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/admin/home/update", method = RequestMethod.POST)
+    public ModelAndView update(@RequestParam("id") long id, @Valid User user, BindingResult bindingResult){
+        ModelAndView modelAndView = new ModelAndView();
+        User userExist = userService.getById(id);
+        if (userExist != null){
+            userExist.setFirstname(user.getFirstname());
+            userExist.setLastname(user.getLastname());
+            userExist.setUsername(user.getUsername());
+            userExist.setEmail(user.getEmail());
+            userService.saveUser(userExist);
+            modelAndView.addObject("successMessage", "User has been updated successfully");
+            modelAndView.addObject("id", userExist);
+            modelAndView.setViewName("admin/update");
+        }
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("admin/update");
+        }else{
+            //bindingResult.rejectValue("id", "error.user", "There is no users with provide id");
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/home/update", method = RequestMethod.GET)
+    public ModelAndView updateHome(){
+        ModelAndView modelAndView = new ModelAndView();
+        User user = new User();
+        modelAndView.addObject("user", user);
+        modelAndView.setViewName("admin/update");
+        return modelAndView;
+    }
 
 }

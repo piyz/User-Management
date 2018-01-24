@@ -39,7 +39,6 @@
             <button type="Submit" th:text="Logout">Logout</button>
         </form>
     </div>
-
     <div class="container">
         <form autocomplete="off" action="#" th:action="@{/admin/home}" th:object="${user}" method="post" class="form-horizontal" role="form">
 
@@ -81,6 +80,9 @@
             <span th:utext="${successMessage}"></span>
 
         </form>
+    </div>
+    <div>
+        <a th:href="@{/admin/home/update}">Go to update some users</a>
     </div>
 </body>
 </html>
