@@ -59,8 +59,8 @@ public class UserServiceImpl implements UserService {
     public void saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
-        Group userGroup = groupDao.findByName("USER");
-        user.setGroups(new HashSet<>(Arrays.asList(userGroup)));
+        //Group userGroup = groupDao.findByName("USER");
+        //user.setGroups(new HashSet<>(Arrays.asList(userGroup)));
         userDao.save(user);
     }
 }

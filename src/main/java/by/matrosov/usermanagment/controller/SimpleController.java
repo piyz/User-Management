@@ -28,7 +28,7 @@ public class SimpleController {
     }
 
     @RequestMapping(value="/users/home", method = RequestMethod.GET)
-    public ModelAndView hello(){
+    public ModelAndView userHome(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("users/home");
         return modelAndView;
@@ -42,7 +42,7 @@ public class SimpleController {
     }
 
     @RequestMapping(value="/admin/home", method = RequestMethod.GET)
-    public ModelAndView home(){
+    public ModelAndView adminHome(){
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
         modelAndView.addObject("user", user);
@@ -64,7 +64,6 @@ public class SimpleController {
             modelAndView.addObject("successMessage", "User has been registered successfully");
             modelAndView.addObject("user", new User());
             modelAndView.setViewName("admin/home");
-
         }
         return modelAndView;
     }
