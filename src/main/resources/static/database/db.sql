@@ -5,6 +5,8 @@ CREATE TABLE users(
   username VARCHAR(255) NOT NULL ,
   password VARCHAR(255) NOT NULL ,
   email VARCHAR(255) NOT NULL ,
+  creation_date DATE,
+  modified_date DATE,
   birthday DATE ,
   active INT(11) DEFAULT NULL ,
   zip VARCHAR(255) ,
@@ -29,6 +31,7 @@ CREATE TABLE user_group(
 
 ## need to add user with role admin to db
 INSERT INTO groups VALUES (1, 'ADMIN');
+INSERT INTO groups VALUES (2, 'USER');
 INSERT INTO users (first_name, last_name, username, password, email, birthday, active) VALUES
   ('admin', 'admin', 'admin', '$2a$10$p2A3bfnmgDDbCUtfPEYO3Om3uOf2UY6kfEC1djhi5Yve7hg3.30/K', 'admin@mail.ru', str_to_date('07-25-2012','%m-%d-%Y'), 1);
 INSERT INTO user_group VALUES (1,1);
