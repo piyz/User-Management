@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Role add Page</title>
+</head>
+<body>
+    <div class="container">
+        <form action="#" th:action="@{/admin/home/addRole}" method="post">
+
+            <h2> Form 1 </h2>
+
+            <div class="form-group">
+
+                <div>
+                    <input type="number" name="id" placeholder="ID" class="form-control" />
+                </div>
+
+                <div>
+                    <button type="submit" >Add Admin Role</button>
+                </div>
+
+            </div>
+
+            <span th:utext="${successMessage}"></span>
+
+        </form>
+
+    </div>
+</body>
+</html>

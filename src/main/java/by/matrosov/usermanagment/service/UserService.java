@@ -13,4 +13,6 @@ public interface UserService {
     User getByBirthday(Date d);
     User getByEmail(String s);
     void saveUser(User user);
+    void updateUser(User user);
+    void addAdminRole(User user);
 }

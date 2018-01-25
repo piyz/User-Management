@@ -129,7 +129,7 @@ public class SimpleController {
             userExist.setLastname(user.getLastname());
             userExist.setUsername(user.getUsername());
             userExist.setEmail(user.getEmail());
-            userService.saveUser(userExist);
+            userService.updateUser(userExist);
             modelAndView.addObject("successMessage", "User has been updated successfully");
             modelAndView.addObject("id", userExist);
             modelAndView.setViewName("admin/update");
@@ -151,4 +151,22 @@ public class SimpleController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/admin/home/addRole", method = RequestMethod.GET)
+    public ModelAndView addRoleHome(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin/role");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/home/addRole", method = RequestMethod.POST)
+    public ModelAndView addAdminRole(@RequestParam("id") long id){
+        ModelAndView modelAndView = new ModelAndView();
+        User userExist = userService.getById(id);
+        if (userExist != null){
+            userService.addAdminRole(userExist);
+            modelAndView.addObject("successMessage", "Admin Role has been added successfully");
+            modelAndView.setViewName("admin/role");
+        }
+        return modelAndView;
+    }
 }
