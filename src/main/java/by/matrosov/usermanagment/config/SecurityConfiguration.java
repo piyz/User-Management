@@ -44,14 +44,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest().authenticated()
-
-                .antMatchers("/users/home/**").hasAnyAuthority("ADMIN", "USER").anyRequest().authenticated()
+                .antMatchers("/home/**").hasAnyAuthority("ADMIN", "USER").anyRequest().authenticated()
 
                 .and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/admin/home")
+
+                .defaultSuccessUrl("/home")
+
                 .usernameParameter("username")
                 .passwordParameter("password")
+
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/").and().exceptionHandling()

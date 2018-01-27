@@ -25,10 +25,12 @@ public class SimpleController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/users/home", method = RequestMethod.GET)
+    @RequestMapping(value="/home", method = RequestMethod.GET)
     public ModelAndView userHome(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("users/home");
+        List<User> list = userService.getAllUsers();
+        modelAndView.addObject("listUsers", list);
+        modelAndView.setViewName("home");
         return modelAndView;
     }
 
