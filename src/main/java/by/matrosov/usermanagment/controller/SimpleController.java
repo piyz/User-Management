@@ -45,6 +45,8 @@ public class SimpleController {
     public ModelAndView adminHome(){
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
+        List<User> list = userService.getAllUsers();
+        modelAndView.addObject("listUsers", list);
         modelAndView.addObject("user", user);
         modelAndView.setViewName("admin");
         return modelAndView;
@@ -65,15 +67,6 @@ public class SimpleController {
             modelAndView.addObject("user", new User());
             modelAndView.setViewName("admin");
         }
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/admin/home/all", method = RequestMethod.GET)
-    public ModelAndView getAll(){
-        ModelAndView modelAndView = new ModelAndView();
-        List<User> list = userService.getAllUsers();
-        modelAndView.addObject("all", list);
-        modelAndView.setViewName("admin/all");
         return modelAndView;
     }
 

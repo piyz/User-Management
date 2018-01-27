@@ -12,11 +12,113 @@
 </head>
 <body>
     <div class="container">
-        <form th:action="@{/admin/home/all}" method="get">
-            <label>Click here to get all users</label>
-            <button type="Submit" th:text="getAll">Get All</button>
-        </form>
+        <div class="row">
+            <div class="col-3 flex-last">
+                <form action="#" th:action="@{/admin/home}" th:object="${user}" method="post">
+                    <h2>Registration Form</h2>
+                    <div class="form-group">
+                        <div>
+                            <label th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="validation-message"></label>
+                            <input type="text" th:field="*{firstname}" placeholder="First Name" class="form-control" />
+                        </div>
 
+                        <div>
+                            <label	th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="validation-message"></label>
+                            <input type="text" th:field="*{lastname}" placeholder="Last Name" class="form-control" />
+                        </div>
+
+                        <div>
+                            <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="validation-message"></label>
+                            <input type="text" th:field="*{username}" placeholder="Username" class="form-control" />
+                        </div>
+
+                        <div>
+                            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message"></label>
+                            <input type="password" th:field="*{password}" placeholder="Password" class="form-control" />
+                        </div>
+
+                        <div>
+                            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
+                            <input type="email" th:field="*{email}" placeholder="Email" class="form-control" />
+                        </div>
+
+                        <div>
+                            <label th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="validation-message"></label>
+                            <input type="date" th:field="*{birthday}" placeholder="Birthday" class="form-control" />
+                        </div>
+
+                        <div>
+                            <label th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}" class="validation-message"></label>
+                            <input type="text" th:field="*{zip}" placeholder="Zip" class="form-control" />
+                        </div>
+
+                        <div>
+                            <label th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="validation-message"></label>
+                            <input type="text" th:field="*{country}" placeholder="Country" class="form-control" />
+                        </div>
+
+                        <div>
+                            <label th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="validation-message"></label>
+                            <input type="text" th:field="*{city}" placeholder="City" class="form-control" />
+                        </div>
+
+                        <div>
+                            <label th:if="${#fields.hasErrors('district')}" th:errors="*{district}" class="validation-message"></label>
+                            <input type="text" th:field="*{district}" placeholder="District" class="form-control" />
+                        </div>
+
+                        <div>
+                            <label th:if="${#fields.hasErrors('street')}" th:errors="*{street}" class="validation-message"></label>
+                            <input type="text" th:field="*{street}" placeholder="Street" class="form-control" />
+                        </div>
+
+                        <div>
+                            <button class="btn btn-sm btn-success btn-block" type="submit">Register User</button>
+                        </div>
+                    </div>
+                    <span th:utext="${successMessage}"></span>
+                </form>
+            </div>
+            <div class="col-9 flex-first">
+                <div th:if="${not #lists.isEmpty(listUsers)}">
+                    <h2>private table of users</h2>
+                    <table class="table table-striped table-responsive">
+                        <tr>
+                            <th>Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Birthday</th>
+                            <th>Zip</th>
+                            <th>Country</th>
+                            <th>City</th>
+                            <th>District</th>
+                            <th>Street</th>
+                        </tr>
+                        <tr th:each="user : ${listUsers}">
+                            <td th:text="${user.id}"></td>
+                            <td th:text="${user.firstname}"></td>
+                            <td th:text="${user.lastname}"></td>
+                            <td th:text="${user.username}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td th:text="${user.birthday}"></td>
+                            <td th:text="${user.zip}"></td>
+                            <td th:text="${user.country}"></td>
+                            <td th:text="${user.city}"></td>
+                            <td th:text="${user.district}"></td>
+                            <td th:text="${user.street}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container">
         <form th:action="@{/admin/home/getuserbyid}">
             <label for="id">Search For ID</label><input name="id" id="id" type="number">
             <button type="submit">Go</button>
@@ -42,9 +144,6 @@
             <button type="submit">Go</button>
         </form>
 
-        <form th:action="@{/logout}" method="get">
-            <button type="Submit" th:text="Logout">Logout</button>
-        </form>
     </div>
     <div>
         <a th:href="@{/admin/home/update}">Go to update some users</a>
@@ -52,77 +151,8 @@
     <div>
         <a th:href="@{/admin/home/role}">Go to add role</a>
     </div>
-
-
-
-
-    <div class="container">
-        <div class="col-4">
-            <form action="#" th:action="@{/admin/home}" th:object="${user}" method="post">
-                <h2>Registration Form</h2>
-                <div class="form-group">
-                    <div>
-                        <label th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="validation-message"></label>
-                        <input type="text" th:field="*{firstname}" placeholder="First Name" class="form-control" />
-                    </div>
-
-                    <div>
-                        <label	th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="validation-message"></label>
-                        <input type="text" th:field="*{lastname}" placeholder="Last Name" class="form-control" />
-                    </div>
-
-                    <div>
-                        <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="validation-message"></label>
-                        <input type="text" th:field="*{username}" placeholder="Username" class="form-control" />
-                    </div>
-
-                    <div>
-                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message"></label>
-                        <input type="password" th:field="*{password}" placeholder="Password" class="form-control" />
-                    </div>
-
-                    <div>
-                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
-                        <input type="email" th:field="*{email}" placeholder="Email" class="form-control" />
-                    </div>
-
-                    <div>
-                        <label th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="validation-message"></label>
-                        <input type="date" th:field="*{birthday}" placeholder="Birthday" class="form-control" />
-                    </div>
-
-                    <div>
-                        <label th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}" class="validation-message"></label>
-                        <input type="text" th:field="*{zip}" placeholder="Zip" class="form-control" />
-                    </div>
-
-                    <div>
-                        <label th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="validation-message"></label>
-                        <input type="text" th:field="*{country}" placeholder="Country" class="form-control" />
-                    </div>
-
-                    <div>
-                        <label th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="validation-message"></label>
-                        <input type="text" th:field="*{city}" placeholder="City" class="form-control" />
-                    </div>
-
-                    <div>
-                        <label th:if="${#fields.hasErrors('district')}" th:errors="*{district}" class="validation-message"></label>
-                        <input type="text" th:field="*{district}" placeholder="District" class="form-control" />
-                    </div>
-
-                    <div>
-                        <label th:if="${#fields.hasErrors('street')}" th:errors="*{street}" class="validation-message"></label>
-                        <input type="text" th:field="*{street}" placeholder="Street" class="form-control" />
-                    </div>
-
-                    <div>
-                        <button class="btn btn-sm btn-success btn-block" type="submit">Register User</button>
-                    </div>
-                </div>
-                <span th:utext="${successMessage}"></span>
-            </form>
-        </div>
-    </div>
+    <form class="col-sm-1" th:action="@{/logout}" method="get">
+        <button class="btn btn-sm btn-danger btn-block" type="submit">Logout</button>
+    </form>
 </body>
 </html>
