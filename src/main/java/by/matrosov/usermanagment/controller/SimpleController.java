@@ -46,7 +46,7 @@ public class SimpleController {
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("admin/home");
+        modelAndView.setViewName("admin");
         return modelAndView;
     }
 
@@ -58,12 +58,12 @@ public class SimpleController {
             bindingResult.rejectValue("email", "error.user", "There is already a user registered with the email provided");
         }
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("admin/home");
+            modelAndView.setViewName("admin");
         } else {
             userService.saveUser(user);
             modelAndView.addObject("successMessage", "User has been registered successfully");
             modelAndView.addObject("user", new User());
-            modelAndView.setViewName("admin/home");
+            modelAndView.setViewName("admin");
         }
         return modelAndView;
     }

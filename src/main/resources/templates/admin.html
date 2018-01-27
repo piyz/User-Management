@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/modules/bootstrap/dist/css/bootstrap.min.css">
+    <!--->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <title>Admin page</title>
+</head>
+<body>
+    <div class="container">
+        <form th:action="@{/admin/home/all}" method="get">
+            <label>Click here to get all users</label>
+            <button type="Submit" th:text="getAll">Get All</button>
+        </form>
+
+        <form th:action="@{/admin/home/getuserbyid}">
+            <label for="id">Search For ID</label><input name="id" id="id" type="number">
+            <button type="submit">Go</button>
+        </form>
+
+        <form th:action="@{/admin/home/getuserbyfirstname}">
+            <label for="name1">Search For Firstname</label><input name="name1" id="name1" type="text">
+            <button type="submit">Go</button>
+        </form>
+
+        <form th:action="@{/admin/home/getuserbylastname}">
+            <label for="name2">Search For Lastname</label><input name="name2" id="name2" type="text">
+            <button type="submit">Go</button>
+        </form>
+
+        <form th:action="@{/admin/home/getbybirthday}">
+            <label for="date">Search For Birthday</label><input name="date" id="date" type="date">
+            <button type="submit">Go</button>
+        </form>
+
+        <form th:action="@{/admin/home/getbyemail}">
+            <label for="email">Search For Email</label><input name="email" id="email" type="email">
+            <button type="submit">Go</button>
+        </form>
+
+        <form th:action="@{/logout}" method="get">
+            <button type="Submit" th:text="Logout">Logout</button>
+        </form>
+    </div>
+    <div>
+        <a th:href="@{/admin/home/update}">Go to update some users</a>
+    </div>
+    <div>
+        <a th:href="@{/admin/home/role}">Go to add role</a>
+    </div>
+
+
+
+
+    <div class="container">
+        <div class="col-4">
+            <form action="#" th:action="@{/admin/home}" th:object="${user}" method="post">
+                <h2>Registration Form</h2>
+                <div class="form-group">
+                    <div>
+                        <label th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="validation-message"></label>
+                        <input type="text" th:field="*{firstname}" placeholder="First Name" class="form-control" />
+                    </div>
+
+                    <div>
+                        <label	th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="validation-message"></label>
+                        <input type="text" th:field="*{lastname}" placeholder="Last Name" class="form-control" />
+                    </div>
+
+                    <div>
+                        <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="validation-message"></label>
+                        <input type="text" th:field="*{username}" placeholder="Username" class="form-control" />
+                    </div>
+
+                    <div>
+                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message"></label>
+                        <input type="password" th:field="*{password}" placeholder="Password" class="form-control" />
+                    </div>
+
+                    <div>
+                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
+                        <input type="email" th:field="*{email}" placeholder="Email" class="form-control" />
+                    </div>
+
+                    <div>
+                        <label th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="validation-message"></label>
+                        <input type="date" th:field="*{birthday}" placeholder="Birthday" class="form-control" />
+                    </div>
+
+                    <div>
+                        <label th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}" class="validation-message"></label>
+                        <input type="text" th:field="*{zip}" placeholder="Zip" class="form-control" />
+                    </div>
+
+                    <div>
+                        <label th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="validation-message"></label>
+                        <input type="text" th:field="*{country}" placeholder="Country" class="form-control" />
+                    </div>
+
+                    <div>
+                        <label th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="validation-message"></label>
+                        <input type="text" th:field="*{city}" placeholder="City" class="form-control" />
+                    </div>
+
+                    <div>
+                        <label th:if="${#fields.hasErrors('district')}" th:errors="*{district}" class="validation-message"></label>
+                        <input type="text" th:field="*{district}" placeholder="District" class="form-control" />
+                    </div>
+
+                    <div>
+                        <label th:if="${#fields.hasErrors('street')}" th:errors="*{street}" class="validation-message"></label>
+                        <input type="text" th:field="*{street}" placeholder="Street" class="form-control" />
+                    </div>
+
+                    <div>
+                        <button class="btn btn-sm btn-success btn-block" type="submit">Register User</button>
+                    </div>
+                </div>
+                <span th:utext="${successMessage}"></span>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -6,7 +6,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -41,10 +42,10 @@ public class User extends Auditable{
     @Email(message = "*Please provide a valid Email")
     private String email;
 
-    @Column(name = "birthday")
     //@NotEmpty(message = "*Please provide your birthday")
-    @DateTimeFormat(pattern = "MM-dd-yyyy")
     //@Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "birthday")
     private Date birthday;
 
     @Column(name = "active")
