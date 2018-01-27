@@ -1,0 +1,9 @@
+body{
+    background-color: #c1e2b3;
+}
+
+.form-signin{
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
