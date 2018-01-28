@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -75,14 +76,14 @@ public class SimpleController {
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.getById(id);
         modelAndView.addObject("id", user);
-        modelAndView.setViewName("admin/ID");
+        modelAndView.setViewName("id");
         return modelAndView;
     }
 
     @RequestMapping(value = "/admin/home/getuserbyfirstname", method = RequestMethod.GET)
     public ModelAndView getUserByFirstname(@RequestParam("name1") String name){
         ModelAndView modelAndView = new ModelAndView();
-        User user = userService.getByFirstname(name);
+        List<User> user = userService.getByFirstname(name);
         modelAndView.addObject("name1", user);
         modelAndView.setViewName("admin/firstname");
         return modelAndView;
@@ -91,7 +92,7 @@ public class SimpleController {
     @RequestMapping(value = "/admin/home/getuserbylastname", method = RequestMethod.GET)
     public ModelAndView getUserByLastname(@RequestParam("name2") String name){
         ModelAndView modelAndView = new ModelAndView();
-        User user = userService.getByLastname(name);
+        List<User> user = userService.getByLastname(name);
         modelAndView.addObject("name2", user);
         modelAndView.setViewName("admin/lastname");
         return modelAndView;
@@ -100,7 +101,7 @@ public class SimpleController {
     @RequestMapping(value = "/admin/home/getbybirthday", method = RequestMethod.GET)
     public ModelAndView getUserByBirthday(@RequestParam("date") Date date){
         ModelAndView modelAndView = new ModelAndView();
-        User user = userService.getByBirthday(date);
+        List<User> user = userService.getByBirthday(date);
         modelAndView.addObject("date", user);
         modelAndView.setViewName("admin/date");
         return modelAndView;

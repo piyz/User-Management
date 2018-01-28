@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -36,17 +37,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getByFirstname(String s) {
+    public List<User> getByFirstname(String s) {
         return userDao.getByFirstname(s);
     }
 
     @Override
-    public User getByLastname(String s) {
+    public List<User> getByLastname(String s) {
         return userDao.getByLastname(s);
     }
 
+
     @Override
-    public User getByBirthday(Date d) {
+    public List<User> getByBirthday(Date d) {
         return userDao.getByBirthday(d);
     }
 

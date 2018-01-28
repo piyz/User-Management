@@ -95,6 +95,10 @@
                             <th>City</th>
                             <th>District</th>
                             <th>Street</th>
+                            <th>Active</th>
+                            <th>Groups</th>
+                            <th>CD</th>
+                            <th>LMD</th>
                         </tr>
                         <tr th:each="user : ${listUsers}">
                             <td th:text="${user.id}"></td>
@@ -108,6 +112,10 @@
                             <td th:text="${user.city}"></td>
                             <td th:text="${user.district}"></td>
                             <td th:text="${user.street}"></td>
+                            <td th:text="${user.active}"></td>
+                            <td th:text="${user.groups}"></td>
+                            <td th:text="${user.creationDate}"></td>
+                            <td th:text="${user.lastModifiedDate}"></td>
                         </tr>
                     </table>
                 </div>
@@ -115,44 +123,47 @@
         </div>
     </div>
 
-
-
-
     <div class="container">
         <form th:action="@{/admin/home/getuserbyid}">
-            <label for="id">Search For ID</label><input name="id" id="id" type="number">
-            <button type="submit">Go</button>
+            <label for="id">Search user by id</label><input name="id" id="id" type="number">
+            <button class="btn btn-sm btn-primary" type="submit">Go</button>
         </form>
 
         <form th:action="@{/admin/home/getuserbyfirstname}">
-            <label for="name1">Search For Firstname</label><input name="name1" id="name1" type="text">
-            <button type="submit">Go</button>
+            <label for="name1">Search user by first name</label><input name="name1" id="name1" type="text">
+            <button class="btn btn-sm btn-primary" type="submit">Go</button>
         </form>
 
         <form th:action="@{/admin/home/getuserbylastname}">
-            <label for="name2">Search For Lastname</label><input name="name2" id="name2" type="text">
-            <button type="submit">Go</button>
+            <label for="name2">Search user by last name</label><input name="name2" id="name2" type="text">
+            <button class="btn btn-sm btn-primary" type="submit">Go</button>
         </form>
 
         <form th:action="@{/admin/home/getbybirthday}">
-            <label for="date">Search For Birthday</label><input name="date" id="date" type="date">
-            <button type="submit">Go</button>
+            <label for="date">Search user by birthday</label><input name="date" id="date" type="date">
+            <button class="btn btn-sm btn-primary" type="submit">Go</button>
         </form>
 
         <form th:action="@{/admin/home/getbyemail}">
-            <label for="email">Search For Email</label><input name="email" id="email" type="email">
-            <button type="submit">Go</button>
+            <label for="email">Search user by email</label><input name="email" id="email" type="email">
+            <button class="btn btn-sm btn-primary" type="submit">Go</button>
         </form>
-
     </div>
+
+
+
     <div>
         <a th:href="@{/admin/home/update}">Go to update some users</a>
     </div>
     <div>
         <a th:href="@{/admin/home/role}">Go to add role</a>
     </div>
-    <form class="col-sm-1" th:action="@{/logout}" method="get">
-        <button class="btn btn-sm btn-danger btn-block" type="submit">Logout</button>
-    </form>
+
+
+    <div class="container">
+        <form class="col-sm-1" th:action="@{/logout}" method="get">
+            <button class="btn btn-sm btn-danger btn-block" type="submit">Logout</button>
+        </form>
+    </div>
 </body>
 </html>
