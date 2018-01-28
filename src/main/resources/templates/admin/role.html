@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Role add Page</title>
 </head>
 <body>
     <div class="container">
-        <form action="#" th:action="@{/admin/home/addRole}" method="post">
+        <form action="#" th:action="@{/admin/home/addRole1}" method="post">
 
             <h2> Form 1 </h2>
 
             <div class="form-group">
 
                 <div>
-                    <input type="number" name="id" placeholder="ID" class="form-control" />
+                    <input type="number" name="id1" placeholder="ID" class="form-control" />
                 </div>
 
                 <div>
@@ -21,7 +21,30 @@
 
             </div>
 
-            <span th:utext="${successMessage}"></span>
+            <span th:utext="${successMessage1}"></span>
+            <span th:utext="${errorMessage1}"></span>
+
+        </form>
+
+        <form action="#" th:action="@{/admin/home/addRole2}" method="post">
+
+            <h2> Form 1 </h2>
+
+            <div class="form-group">
+
+                <div>
+                    <input type="number" name="id2" placeholder="ID" class="form-control" />
+                </div>
+
+                <div>
+                    <button type="submit" >Add User Role</button>
+                </div>
+
+            </div>
+
+            <span th:utext="${successMessage2}"></span>
+            <span th:utext="${errorMessage2}"></span>
+            <span th:utext="${adminError}"></span>
 
         </form>
 

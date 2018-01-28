@@ -46,7 +46,6 @@ public class UserServiceImpl implements UserService {
         return userDao.getByLastname(s);
     }
 
-
     @Override
     public List<User> getByBirthday(Date d) {
         return userDao.getByBirthday(d);
@@ -78,5 +77,17 @@ public class UserServiceImpl implements UserService {
         Group userGroup = groupDao.findByName("ADMIN");
         user.setGroups(new HashSet<>(Arrays.asList(userGroup)));
         userDao.save(user);
+    }
+
+    @Override
+    public void addUserRole(User user) {
+        Group userGroup = groupDao.findByName("USER");
+        user.setGroups(new HashSet<>(Arrays.asList(userGroup)));
+        userDao.save(user);
+    }
+
+    @Override
+    public User getByUsername(String s) {
+        return userDao.getByUsername(s);
     }
 }

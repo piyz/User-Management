@@ -12,4 +12,5 @@ public interface UserDao extends JpaRepository<User,Long>{
     List<User> getByLastname(String s);
     List<User> getByBirthday(java.util.Date birthday);
     User getByEmail(String s);
+    User getByUsername(String s);
 }

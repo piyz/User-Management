@@ -15,4 +15,6 @@ public interface UserService {
     void saveUser(User user);
     void updateUser(User user);
     void addAdminRole(User user);
+    void addUserRole(User user);
+    User getByUsername(String s);
 }

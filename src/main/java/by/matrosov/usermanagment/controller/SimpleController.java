@@ -3,6 +3,8 @@ package by.matrosov.usermanagment.controller;
 import by.matrosov.usermanagment.model.User;
 import by.matrosov.usermanagment.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -166,13 +169,52 @@ public class SimpleController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin/home/addRole", method = RequestMethod.POST)
-    public ModelAndView addAdminRole(@RequestParam("id") long id){
+    @RequestMapping(value = "/admin/home/addRole1", method = RequestMethod.POST)
+    public ModelAndView addAdminRole(@RequestParam("id1") long id){
         ModelAndView modelAndView = new ModelAndView();
         User userExist = userService.getById(id);
         if (userExist != null){
             userService.addAdminRole(userExist);
-            modelAndView.addObject("successMessage", "Admin Role has been added successfully");
+            modelAndView.addObject("successMessage1", "Admin Role has been added successfully");
+            modelAndView.setViewName("admin/role");
+        }else {
+            modelAndView.addObject("errorMessage1", "User with provide id is not exist");
+            modelAndView.setViewName("admin/role");
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/home/addRole2", method = RequestMethod.POST)
+    public ModelAndView addUserRole(@RequestParam("id2") long id){
+        ModelAndView modelAndView = new ModelAndView();
+
+        /*
+            there should be no situations
+            when last ADMIN can set role USER for yourself
+         */
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User admin = userService.getByUsername(authentication.getName());
+        int count = 0;
+        List<User> list = userService.getAllUsers();
+        for (User a : list) {
+            if (a.getGroups().toString().contains("ADMIN")) {
+                count++;
+            }
+        }
+        if (count == 1 && admin.getId() == id){
+            modelAndView.addObject("adminError", "Sorry, you a last user with admin role in system");
+            modelAndView.setViewName("admin/role");
+            return modelAndView;
+        }
+
+        User userExist = userService.getById(id);
+        if (userExist != null){
+            userService.addUserRole(userExist);
+            modelAndView.addObject("successMessage2", "User Role has been added successfully");
+            modelAndView.setViewName("admin/role");
+        }else {
+            modelAndView.addObject("errorMessage2", "User with provide id is not exist");
             modelAndView.setViewName("admin/role");
         }
         return modelAndView;
