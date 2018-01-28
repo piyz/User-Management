@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -116,6 +115,7 @@ public class SimpleController {
         return modelAndView;
     }
 
+    //shit code but it work
     @RequestMapping(value = "/admin/home/update", method = RequestMethod.POST)
     public ModelAndView update(@RequestParam("id") long id, @Valid User user, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView();
@@ -125,15 +125,27 @@ public class SimpleController {
             userExist.setLastname(user.getLastname());
             userExist.setUsername(user.getUsername());
             userExist.setEmail(user.getEmail());
-            userService.updateUser(userExist);
-            modelAndView.addObject("successMessage", "User has been updated successfully");
-            modelAndView.addObject("id", userExist);
-            modelAndView.setViewName("admin/update");
-        }
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("admin/update");
-        }else{
-            //bindingResult.rejectValue("id", "error.user", "There is no users with provide id");
+            userExist.setBirthday(user.getBirthday());
+            userExist.setZip(user.getZip());
+            userExist.setCountry(user.getCountry());
+            userExist.setCity(user.getCity());
+            userExist.setDistrict(user.getDistrict());
+            userExist.setStreet(user.getStreet());
+            if (bindingResult.hasErrors()) {
+                modelAndView.setViewName("update");
+            }else{
+                userService.updateUser(userExist);
+                modelAndView.addObject("successMessage", "User has been updated successfully");
+                modelAndView.addObject("id", userExist);
+                modelAndView.setViewName("update");
+            }
+        }else {
+            if (!bindingResult.hasErrors()){
+                modelAndView.addObject("errorMessage", "User with provide id is not exist");
+                modelAndView.setViewName("update");
+            }else {
+                modelAndView.setViewName("update");
+            }
         }
         return modelAndView;
     }
@@ -143,7 +155,7 @@ public class SimpleController {
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("admin/update");
+        modelAndView.setViewName("update");
         return modelAndView;
     }
 

@@ -78,6 +78,12 @@
                     </div>
                     <span th:utext="${successMessage}"></span>
                 </form>
+
+                <div>
+                    <button class="btn btn-sm btn-warning btn-block" type="submit"><a th:href="@{/admin/home/update}">Go to update users</a></button>
+                    <button class="btn btn-sm btn-warning btn-block" type="submit"><a th:href="@{/admin/home/role}">Go to add role</a></button>
+                </div>
+
             </div>
             <div class="col-9 flex-first">
                 <div th:if="${not #lists.isEmpty(listUsers)}">
@@ -149,16 +155,6 @@
             <button class="btn btn-sm btn-primary" type="submit">Go</button>
         </form>
     </div>
-
-
-
-    <div>
-        <a th:href="@{/admin/home/update}">Go to update some users</a>
-    </div>
-    <div>
-        <a th:href="@{/admin/home/role}">Go to add role</a>
-    </div>
-
 
     <div class="container">
         <form class="col-sm-1" th:action="@{/logout}" method="get">
