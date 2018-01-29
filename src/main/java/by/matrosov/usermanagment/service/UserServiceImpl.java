@@ -90,4 +90,9 @@ public class UserServiceImpl implements UserService {
     public User getByUsername(String s) {
         return userDao.getByUsername(s);
     }
+
+    @Override
+    public List<User> getAllByActive(int a) {
+        return userDao.getAllByActive(a);
+    }
 }

@@ -31,7 +31,7 @@ public class SimpleController {
     @RequestMapping(value="/home", method = RequestMethod.GET)
     public ModelAndView userHome(){
         ModelAndView modelAndView = new ModelAndView();
-        List<User> list = userService.getAllUsers();
+        List<User> list = userService.getAllByActive(1);
         modelAndView.addObject("listUsers", list);
         modelAndView.setViewName("home");
         return modelAndView;
@@ -124,24 +124,32 @@ public class SimpleController {
         ModelAndView modelAndView = new ModelAndView();
         User userExist = userService.getById(id);
         if (userExist != null){
-            userExist.setFirstname(user.getFirstname());
-            userExist.setLastname(user.getLastname());
-            userExist.setUsername(user.getUsername());
-            userExist.setEmail(user.getEmail());
-            userExist.setBirthday(user.getBirthday());
-            userExist.setZip(user.getZip());
-            userExist.setCountry(user.getCountry());
-            userExist.setCity(user.getCity());
-            userExist.setDistrict(user.getDistrict());
-            userExist.setStreet(user.getStreet());
-            if (bindingResult.hasErrors()) {
-                modelAndView.setViewName("update");
-            }else{
-                userService.updateUser(userExist);
-                modelAndView.addObject("successMessage", "User has been updated successfully");
-                modelAndView.addObject("id", userExist);
+
+            //need to check active or non-active user
+            if (userExist.getActive() == 1){
+                userExist.setFirstname(user.getFirstname());
+                userExist.setLastname(user.getLastname());
+                userExist.setUsername(user.getUsername());
+                userExist.setEmail(user.getEmail());
+                userExist.setBirthday(user.getBirthday());
+                userExist.setZip(user.getZip());
+                userExist.setCountry(user.getCountry());
+                userExist.setCity(user.getCity());
+                userExist.setDistrict(user.getDistrict());
+                userExist.setStreet(user.getStreet());
+                if (bindingResult.hasErrors()) {
+                    modelAndView.setViewName("update");
+                }else{
+                    userService.updateUser(userExist);
+                    modelAndView.addObject("successMessage", "User has been updated successfully");
+                    modelAndView.addObject("id", userExist);
+                    modelAndView.setViewName("update");
+                }
+            }else {
+                modelAndView.addObject("errorMessage", "Sorry, you can not update non-active users");
                 modelAndView.setViewName("update");
             }
+
         }else {
             if (!bindingResult.hasErrors()){
                 modelAndView.addObject("errorMessage", "User with provide id is not exist");

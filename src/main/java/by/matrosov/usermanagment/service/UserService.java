@@ -17,4 +17,5 @@ public interface UserService {
     void addAdminRole(User user);
     void addUserRole(User user);
     User getByUsername(String s);
+    List<User> getAllByActive(int a);
 }
