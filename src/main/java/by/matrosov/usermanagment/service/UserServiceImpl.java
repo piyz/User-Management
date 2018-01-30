@@ -95,4 +95,16 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllByActive(int a) {
         return userDao.getAllByActive(a);
     }
+
+    @Override
+    public void activate(User user) {
+        user.setActive(1);
+        userDao.save(user);
+    }
+
+    @Override
+    public void deActivate(User user) {
+        user.setActive(0);
+        userDao.save(user);
+    }
 }

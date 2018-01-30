@@ -18,4 +18,6 @@ public interface UserService {
     void addUserRole(User user);
     User getByUsername(String s);
     List<User> getAllByActive(int a);
+    void activate(User user);
+    void deActivate(User user);
 }

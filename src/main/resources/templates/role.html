@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/modules/bootstrap/dist/css/bootstrap.min.css">
+    <title>Role add Page</title>
+</head>
+<body>
+    <div class="col-4 container">
+        <form action="#" th:action="@{/admin/home/addRole1}" method="post">
+
+            <h2> Form 1 </h2>
+
+            <div class="form-group">
+
+                <div>
+                    <input type="number" name="id1" placeholder="ID" class="form-control" />
+                </div>
+
+                <div>
+                    <button type="submit" >Add Admin Role</button>
+                </div>
+
+            </div>
+
+            <span th:utext="${successMessage1}"></span>
+            <span th:utext="${errorMessage1}"></span>
+
+        </form>
+
+        <form action="#" th:action="@{/admin/home/addRole2}" method="post">
+
+            <h2> Form 1 </h2>
+
+            <div class="form-group">
+
+                <div>
+                    <input type="number" name="id2" placeholder="ID" class="form-control" />
+                </div>
+
+                <div>
+                    <button type="submit" >Add User Role</button>
+                </div>
+
+            </div>
+
+            <span th:utext="${successMessage2}"></span>
+            <span th:utext="${errorMessage2}"></span>
+            <span th:utext="${adminError}"></span>
+
+        </form>
+
+        <form action="#" th:action="@{/admin/home/activate}" method="post">
+
+            <h2> Form 1 </h2>
+
+            <div class="form-group">
+
+                <div>
+                    <input type="number" name="id3" placeholder="ID" class="form-control" />
+                </div>
+
+                <div>
+                    <button type="submit" >Activate</button>
+                </div>
+
+            </div>
+
+            <span th:utext="${successMessage3}"></span>
+            <span th:utext="${errorMessage3}"></span>
+
+        </form>
+
+        <form action="#" th:action="@{/admin/home/deactivate}" method="post">
+
+            <h2> Form 1 </h2>
+
+            <div class="form-group">
+
+                <div>
+                    <input type="number" name="id4" placeholder="ID" class="form-control" />
+                </div>
+
+                <div>
+                    <button type="submit" >Deactivate</button>
+                </div>
+
+            </div>
+
+            <span th:utext="${successMessage4}"></span>
+            <span th:utext="${errorMessage4}"></span>
+
+        </form>
+    </div>
+
+    <div class="container">
+        <form th:action="@{/admin/home}">
+            <button class="btn btn-sm btn-warning" type="submit">Go back</button>
+        </form>
+    </div>
+</body>
+</html>

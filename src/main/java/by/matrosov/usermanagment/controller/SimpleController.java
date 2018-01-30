@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -173,7 +172,7 @@ public class SimpleController {
     @RequestMapping(value = "/admin/home/addRole", method = RequestMethod.GET)
     public ModelAndView addRoleHome(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/role");
+        modelAndView.setViewName("role");
         return modelAndView;
     }
 
@@ -184,10 +183,10 @@ public class SimpleController {
         if (userExist != null){
             userService.addAdminRole(userExist);
             modelAndView.addObject("successMessage1", "Admin Role has been added successfully");
-            modelAndView.setViewName("admin/role");
+            modelAndView.setViewName("role");
         }else {
             modelAndView.addObject("errorMessage1", "User with provide id is not exist");
-            modelAndView.setViewName("admin/role");
+            modelAndView.setViewName("role");
         }
         return modelAndView;
     }
@@ -212,7 +211,7 @@ public class SimpleController {
         }
         if (count == 1 && admin.getId() == id){
             modelAndView.addObject("adminError", "Sorry, you a last user with admin role in system");
-            modelAndView.setViewName("admin/role");
+            modelAndView.setViewName("role");
             return modelAndView;
         }
 
@@ -220,10 +219,40 @@ public class SimpleController {
         if (userExist != null){
             userService.addUserRole(userExist);
             modelAndView.addObject("successMessage2", "User Role has been added successfully");
-            modelAndView.setViewName("admin/role");
+            modelAndView.setViewName("role");
         }else {
             modelAndView.addObject("errorMessage2", "User with provide id is not exist");
-            modelAndView.setViewName("admin/role");
+            modelAndView.setViewName("role");
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/home/activate", method = RequestMethod.POST)
+    public ModelAndView activate(@RequestParam("id3") long id){
+        ModelAndView modelAndView = new ModelAndView();
+        User userExist = userService.getById(id);
+        if (userExist != null){
+            userService.activate(userExist);
+            modelAndView.addObject("successMessage3", "User activate successfully");
+            modelAndView.setViewName("role");
+        }else {
+            modelAndView.addObject("errorMessage3", "User with provide id is not exist");
+            modelAndView.setViewName("role");
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/home/deactivate", method = RequestMethod.POST)
+    public ModelAndView deactivate(@RequestParam("id4") long id){
+        ModelAndView modelAndView = new ModelAndView();
+        User userExist = userService.getById(id);
+        if (userExist != null){
+            userService.deActivate(userExist);
+            modelAndView.addObject("successMessage4", "User deactivate successfully");
+            modelAndView.setViewName("role");
+        }else {
+            modelAndView.addObject("errorMessage4", "User with provide id is not exist");
+            modelAndView.setViewName("role");
         }
         return modelAndView;
     }
